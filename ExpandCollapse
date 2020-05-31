@@ -1,0 +1,42 @@
+HTML:::::
+<tbody id="ExportDataTbody">
+					<tr ng-repeat-start="row1 in exportTable " >
+						<td><input type="radio" name="radio1" ng-click="fun12(row1)"></td>
+						<td>{{row1[0].column2}}</td>
+						<td>{{row1[0].column3}}</td>
+						<td>{{row1[0].column4}}</td>
+						<td>{{row1[0].column5}}</td>
+						<td>{{row1[0].column6}}</td>
+						<td> <button ng-if="row1.expanded" class="btn btn-danger"
+								ng-click="row1.expanded = false">Collapse</button>
+							<button ng-if="!row1.expanded" class="btn btn-danger"
+								ng-click="row1.expanded = true">Expand</button>
+						</td>
+
+					<tr ng-repeat="row2 in range(row1.length) track by $index" ng-if="row1.expanded">
+
+						<td ng-if="$index !=0"></td>
+						<td ng-if="$index !=0">{{row1[$index].column2}}</td>
+						<td ng-if="$index !=0">{{row1[$index].column3}}</td>
+						<td ng-if="$index !=0">{{row1[$index].column4}}</td>
+						<td ng-if="$index !=0">{{row1[$index].column5}}</td>
+						<td ng-if="$index !=0">{{row1[$index].column6}}</td>
+						<td ng-if="$index !=0"></td>
+					</tr>
+					</tr>
+					<tr ng-repeat-end></tr>
+				</tbody>
+				
+<script>
+var response={"data":[
+				[{"column1":1,"column2":1,"column3":"1","column4":"abc0","column5":"abc0","column6":"abc123"},
+				{"column1":1,"column2":1,"column3":"2","column4":"abc1","column5":"abc1","column6":"abc123"},
+				{"column1":1,"column2":1,"column3":"3","column4":"abc2","column5":"abc2","column6":"abc123"}
+			],
+				[{"column1":1,"column2":2,"column3":"1","column4":"xyz0","column5":"xyz","column6":"xyz123"}]
+			]};
+$scope.exportTable= response.data;
+$scope.range = function(n) {
+			return new Array(n);
+		};
+</script>
